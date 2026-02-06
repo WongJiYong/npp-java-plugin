@@ -32,6 +32,7 @@ After installing NppJavaPlugin following options will be available under Plugins
 * Compile
 * Run
 * Compile and Run
+* Decompile
 
 On top of it, NppJavaPlugin also includes Java Console which will output compilation issues if those are found. Java Console can be manually shown with usage of “Show/Hide Java Console” option.
 
@@ -41,8 +42,10 @@ Yes, by default following keyboard shortcuts are configured:
 * Compile - Shift + F8
 * Run - Shift + F9
 * Compile and Run - Shift + F10
+* Decompile
 * Clear Java Console - Shift + F11
 * Show/Hide Java Console - Shift + F12
+* Settings
 
 Those can be changed using Settings -> Shortcut Mapper -> Plugin commands option. If you need more information, more precise instructions can be found here: [https://npp-user-manual.org/docs/preferences/#shortcut-mapper](https://npp-user-manual.org/docs/preferences/#shortcut-mapper)
 

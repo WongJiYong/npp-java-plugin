@@ -37,6 +37,7 @@ namespace NppJavaPlugin {
 		compileAndRunAction->Initialize();
 		clearConsoleAction->Initialize();
 		showHideJavaConsoleAction->Initialize();
+		decompileAction->Initialize();
 		aboutDialog->Initialize(nppData);
 	}
 
@@ -45,15 +46,17 @@ namespace NppJavaPlugin {
 		setCommand(0, _T("Compile"), compileActionAdapter, &*compileAction->getShortcutKey(), false);
 		setCommand(1, _T("Run"), runActionAdapter, &*runAction->getShortcutKey(), false);
 		setCommand(2, _T("Compile and Run"), compileAndRunActionAdapter, &*compileAndRunAction->getShortcutKey(), false);
-		setCommand(3, _T("---"), NULL, NULL, false);
-		setCommand(4, _T("Clear Java Console"), clearConsoleActionExecutorAdapter, &*clearConsoleAction->getShortcutKey(), false);
-		setCommand(5, _T("Show/Hide Java Console"), showHideJavaConsoleActionExecutorAdapter, &*showHideJavaConsoleAction->getShortcutKey(), false);
-		setCommand(6, _T("---"), NULL, NULL, false);
-		setCommand(7, _T("About..."), showAboutDialogActionExecutorAdapter, NULL, false);
+		setCommand(3, _T("Decompile"), decompileActionAdapter, NULL, false);
+		setCommand(4, _T("---"), NULL, NULL, false);
+		setCommand(5, _T("Clear Java Console"), clearConsoleActionExecutorAdapter, &*clearConsoleAction->getShortcutKey(), false);
+		setCommand(6, _T("Show/Hide Java Console"), showHideJavaConsoleActionExecutorAdapter, &*showHideJavaConsoleAction->getShortcutKey(), false);
+		setCommand(7, _T("---"), NULL, NULL, false);
+		setCommand(8, _T("Settings..."), openSettingsActionAdapter, NULL, false);
+		setCommand(9, _T("About..."), showAboutDialogActionExecutorAdapter, NULL, false);
 	}
 
 	const size_t NppJavaPlugin::getNumberOfActions() {
-		return 8;
+		return 10;
 	}
 
 	void compileActionAdapter() {
@@ -105,5 +108,21 @@ namespace NppJavaPlugin {
 
 	void NppJavaPlugin::showAboutDialogActionExecutor() {
 		showAboutDialogAction->Execute();
+	}
+
+	void decompileActionAdapter() {
+		nppJavaPlugin->decompileActionExecutor();
+	}
+
+	void NppJavaPlugin::decompileActionExecutor() {
+		decompileAction->Execute();
+	}
+
+	void openSettingsActionAdapter() {
+		nppJavaPlugin->openSettingsActionExecutor();
+	}
+
+	void NppJavaPlugin::openSettingsActionExecutor() {
+		openSettingsAction->Execute();
 	}
 }

@@ -41,7 +41,11 @@ namespace NppJavaPlugin {
 
 	std::string wstringAsString(std::wstring str) {
 		std::wstring variableValueWString(str);
-		std::string variableValueString(variableValueWString.begin(), variableValueWString.end());
+		std::string variableValueString;
+		variableValueString.reserve(variableValueWString.size());
+		for (wchar_t wc : variableValueWString) {
+			variableValueString.push_back(static_cast<char>(wc));
+		}
 		return variableValueString;
 	}
 
@@ -130,4 +134,80 @@ namespace NppJavaPlugin {
 
 		return versionString;
 	}
-}
+
+	std::wstring getPluginDirectory(HANDLE hModule) {
+		TCHAR moduleFileName[MAX_PATH + 1];
+		if (GetModuleFileName(static_cast<HMODULE>(hModule), moduleFileName, MAX_PATH) == 0)
+			return std::wstring();
+
+		std::wstring modulePath(moduleFileName);
+		size_t lastSlash = modulePath.find_last_of(L"\\/");
+		if (lastSlash != std::wstring::npos) {
+			return modulePath.substr(0, lastSlash);
+		}
+		return std::wstring();
+	}
+
+	std::wstring findCfrJarFile(std::wstring directory) {
+		std::wstring searchPattern = directory + L"\\cfr*.jar";
+		WIN32_FIND_DATA findData;
+		HANDLE hFind = FindFirstFile(searchPattern.c_str(), &findData);
+
+		if (hFind == INVALID_HANDLE_VALUE) {
+			return std::wstring();
+		}
+
+		std::wstring result;
+		do {
+			std::wstring fileName = findData.cFileName;
+			
+			// Skip directories, only look for files
+			if ((findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
+				result = directory + L"\\" + fileName;
+				break;
+			}
+		} while (FindNextFile(hFind, &findData) != 0);
+
+		FindClose(hFind);
+		return result;
+	}
+
+	std::wstring findJavaFileInDirectory(std::wstring directory, std::wstring baseFileName) {
+		std::wstring searchPattern = directory + L"\\*";
+		WIN32_FIND_DATA findData;
+		HANDLE hFind = FindFirstFile(searchPattern.c_str(), &findData);
+
+		if (hFind == INVALID_HANDLE_VALUE) {
+			return std::wstring();
+		}
+
+		std::wstring targetFileName = baseFileName + L".java";
+		std::wstring result;
+
+		do {
+			std::wstring fileName = findData.cFileName;
+			
+			// Skip . and ..
+			if (fileName == L"." || fileName == L"..") {
+				continue;
+			}
+
+			std::wstring fullPath = directory + L"\\" + fileName;
+
+			if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+				// Recursively search subdirectories
+				result = findJavaFileInDirectory(fullPath, baseFileName);
+				if (!result.empty()) {
+					break;
+				}
+			}
+			else if (fileName == targetFileName) {
+				// Found the target file
+				result = fullPath;
+				break;
+			}
+		} while (FindNextFile(hFind, &findData) != 0);
+
+		FindClose(hFind);
+		return result;
+	}}

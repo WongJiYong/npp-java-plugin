@@ -23,9 +23,11 @@
     <ClInclude Include="..\src\Actions\ClearConsoleAction.h" />
     <ClInclude Include="..\src\Actions\CompileAction.h" />
     <ClInclude Include="..\src\Actions\CompileAndRunAction.h" />
+    <ClInclude Include="..\src\Actions\DecompileAction.h" />
     <ClInclude Include="..\src\Actions\RunAction.h" />
     <ClInclude Include="..\src\Actions\ShowAboutDialogAction.h" />
     <ClInclude Include="..\src\Actions\ShowHideJavaConsoleAction.h" />
+    <ClInclude Include="..\src\Actions\OpenSettingsAction.h" />
     <ClInclude Include="..\src\Command\Command.h" />
     <ClInclude Include="..\src\Command\CommandPrompt.h" />
     <ClInclude Include="..\src\Command\LoggingCommand.h" />
@@ -58,9 +60,11 @@
     <ClCompile Include="..\src\Actions\ClearConsoleAction.cpp" />
     <ClCompile Include="..\src\Actions\CompileAction.cpp" />
     <ClCompile Include="..\src\Actions\CompileAndRunAction.cpp" />
+    <ClCompile Include="..\src\Actions\DecompileAction.cpp" />
     <ClCompile Include="..\src\Actions\RunAction.cpp" />
     <ClCompile Include="..\src\Actions\ShowAboutDialogAction.cpp" />
     <ClCompile Include="..\src\Actions\ShowHideJavaConsoleAction.cpp" />
+    <ClCompile Include="..\src\Actions\OpenSettingsAction.cpp" />
     <ClCompile Include="..\src\Command\CommandPrompt.cpp" />
     <ClCompile Include="..\src\Command\LoggingCommand.cpp" />
     <ClCompile Include="..\src\Components\AboutDialog.cpp" />
@@ -84,32 +88,32 @@
     <ProjectGuid>{9D04DBD5-E12E-44E0-A683-6F43F21D533B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NppJavaPlugin</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -199,7 +203,7 @@
       <ImportLibrary>$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\license.txt ..\bin\license.txt</Command>
+      <Command>copy ..\license.txt ..\bin\license.txt &amp;&amp; copy ..\lib\cfr-0.152.jar ..\bin\cfr-0.152.jar &amp;&amp; copy ..\lib\NppJavaPlugin.ini ..\bin\NppJavaPlugin.ini</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -221,7 +225,7 @@
       <ImportLibrary>$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\license.txt ..\bin64\license.txt</Command>
+      <Command>copy ..\license.txt ..\bin64\license.txt &amp;&amp; copy ..\lib\cfr-0.152.jar ..\bin64\cfr-0.152.jar &amp;&amp; copy ..\lib\NppJavaPlugin.ini ..\bin64\NppJavaPlugin.ini</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

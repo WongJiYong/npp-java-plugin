@@ -76,6 +76,9 @@
     <ClInclude Include="..\src\Actions\ClearConsoleAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Actions\DecompileAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\Command\Command.h">
       <Filter>Command</Filter>
     </ClInclude>
@@ -113,6 +116,9 @@
     <ClInclude Include="..\src\Actions\ShowAboutDialogAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Actions\OpenSettingsAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\Components\AboutDialog.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -142,6 +148,12 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Actions\ClearConsoleAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Actions\DecompileAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Actions\OpenSettingsAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Command\CommandPrompt.cpp">

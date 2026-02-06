@@ -16,4 +16,7 @@ namespace NppJavaPlugin {
 	std::wstring getFileExtension(std::wstring fileName);
 	bool fileExists(std::wstring filePath);
 	std::wstring getPluginVersion(HANDLE hModule);
+	std::wstring getPluginDirectory(HANDLE hModule);
+	std::wstring findCfrJarFile(std::wstring directory);
+	std::wstring findJavaFileInDirectory(std::wstring directory, std::wstring baseFileName);
 }

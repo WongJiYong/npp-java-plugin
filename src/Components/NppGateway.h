@@ -24,5 +24,6 @@ namespace NppJavaPlugin {
 		DocumentInfo GetCurrentDocumentInfo();
 		void SaveCurrentFile();
 		void SetFocusOnScintilla();
+		NppData GetNppData() const { return nppData; }
 	};
 }

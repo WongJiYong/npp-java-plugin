@@ -74,7 +74,7 @@ namespace NppJavaPlugin {
 
 	std::wstring RunAction::BuildRunCommand(DocumentInfo currentDocumentInfo, std::wstring className, std::shared_ptr<Configuration> configuration) {
 		std::wstring runCommand;
-
+		(void)currentDocumentInfo;
 		runCommand.append(_T("cmd /C ("));
 		runCommand.append(_T("\""));
 		runCommand.append(configuration->getJavaPath());

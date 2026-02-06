@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <windows.h>
 
 #include "Configuration.h"
 
@@ -10,7 +11,7 @@ namespace NppJavaPlugin {
 	private:
 		std::shared_ptr<Configuration> configuration;
 	public:
-		ConfigurationProvider() : configuration(std::make_shared<Configuration>()) {}
+		ConfigurationProvider(HANDLE hModule) : configuration(std::make_shared<Configuration>(hModule)) {}
 
 		std::shared_ptr<Configuration> getConfiguration();
 	};
